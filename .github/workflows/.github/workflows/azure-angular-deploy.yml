@@ -3,7 +3,7 @@ name: Build and Deploy Angular App to Azure
 on:
 push:
 branches:
-- master   # or main
+- master
 
 jobs:
 build-and-deploy:
@@ -12,26 +12,21 @@ runs-on: ubuntu-latest
 ```
 steps:
 
-# 1️⃣ Checkout code
 - name: Checkout Repository
   uses: actions/checkout@v4
 
-# 2️⃣ Setup Node
 - name: Setup Node.js
   uses: actions/setup-node@v4
   with:
     node-version: 20
 
-# 3️⃣ Install Dependencies
-- name: Install Packages
+- name: Install Dependencies
   run: npm install
 
-# 4️⃣ Build Angular App
-- name: Build Project
+- name: Build Angular App
   run: npm run build -- --configuration production
 
-# 5️⃣ Deploy to Azure Web App
-- name: Deploy to Azure
+- name: Deploy to Azure Web App
   uses: azure/webapps-deploy@v3
   with:
     app-name: YOUR_AZURE_APP_NAME
